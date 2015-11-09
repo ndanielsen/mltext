@@ -25,7 +25,7 @@ def make_dummies(df, columns=None):
         col_name = df[columns].name
         dummy = pd.get_dummies(df[col], prefix=col_name)
         df = pd.concat([df, dummy], axis=1)
-    return df
+    return clean_columns(df)
 
 def clean_columns(df):
     'cleans column names into a nice working format'
@@ -141,7 +141,3 @@ def unique_mapper(df, columns=None):
         map_dict = mapper(df, col)
         df[col] = df[col].map(map_dict)
 
-# columns = ['business_id', 'user_id', 'type', 'cool', 'useful', 'funny']
-# df[columns].apply(pd.Series.nunique)
-# df[columns].apply(lambda x: str(x.unique()))
-# df[columns].apply(my_function)
